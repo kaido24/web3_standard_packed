@@ -64,7 +64,7 @@ projects[xmlsitemap][version] = "2.2"
 
 projects[l10n_update][version] = "1.1"
 
-projects[l10n_client][version] = "1.3"
+projects[l10n_client][version] = "2.0"
 
 projects[emptyparagraphkiller][version] = "1.0-beta2"
 

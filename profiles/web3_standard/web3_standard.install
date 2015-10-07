@@ -292,4 +292,3 @@ function web3_standard_install() {
   variable_set('pathauto_node_pattern', '[node:title]');
   variable_set('pasteformat_cleanup_format', 'full_html');
 }
-
