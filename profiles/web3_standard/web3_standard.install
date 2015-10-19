@@ -179,8 +179,47 @@ function web3_standard_install() {
   // Set article menu default settings to no menu.
   variable_set('menu_options_article', array());
   variable_set('menu_parent_article', 'main-menu:0');
-
-  variable_set('media_wysiwyg_view_mode_image_file_wysiwyg_view_mode_status', TRUE);
+// Set image view mode settings.
+  $image_view_mode_settings = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => TRUE,
+      ),
+      'preview' => array(
+        'custom_settings' => TRUE,
+      ),
+      'wysiwyg' => array(
+        'custom_settings' => TRUE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'file' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'full' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
+    ),
+  );
+  variable_set('field_bundle_settings_file__image', $image_view_mode_settings);
+  // Restrict wysiwyg image options.
+//  variable_set('media_wysiwyg_view_mode_image_file_wysiwyg_view_mode_status', TRUE);
   variable_set('media_wysiwyg_view_mode_image_wysiwyg_restricted_view_modes_status', TRUE);
   $restrict_image_view_modes = array(
     'default' => 'default',
@@ -192,8 +231,6 @@ function web3_standard_install() {
     'preview' => 'preview',
   );
   variable_set('media_wysiwyg_view_mode_image_wysiwyg_restricted_view_modes', $restrict_image_view_modes);
-
-
 
   // drop system / user blocks to ensure correct building
   db_delete('block')->condition('module', 'system')->execute();
