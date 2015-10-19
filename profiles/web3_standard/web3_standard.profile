@@ -89,7 +89,7 @@ if (!function_exists("system_form_install_settings_form_alter")) {
  */
 function web3_standard_custom_submit($form, &$form_state) {
   if ($form_state['values']['file_private_path']) {
-    variable_set('file_private_path', $form_state['values']['file_private_path']);
+    drupal_form_submit('system_file_system_settings', $form_state);
   }
   if ($form_state['values']['l10n_client_enable']) {
     // Enable the module if the user did not disable it on purpose.
