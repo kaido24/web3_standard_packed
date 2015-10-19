@@ -17,6 +17,13 @@ if (!function_exists("system_form_install_configure_form_alter")) {
     $form['admin_account']['account']['name']['#default_value'] = 'admin';
     $form['admin_account']['account']['mail']['#default_value'] = $mail;
     $form['server_settings']['site_default_country']['#default_value'] =  'EE';
+    $form['server_settings']['file_private_path'] = array(
+      '#type' =>  'textfield',
+      '#title' =>  st('Private file system path'),
+      '#default_value' =>  '',
+      '#weight' => 10,
+      '#required' => TRUE,
+    );
     $form['l10n_client_wrapper'] = array(
     '#type' => 'fieldset',
     '#title' => st('On-page translation and sharing'),
@@ -81,6 +88,9 @@ if (!function_exists("system_form_install_settings_form_alter")) {
  * Custom submit handler for the localized install.
  */
 function web3_standard_custom_submit($form, &$form_state) {
+  if ($form_state['values']['file_private_path']) {
+    variable_set('file_private_path', $form_state['values']['file_private_path']);
+  }
   if ($form_state['values']['l10n_client_enable']) {
     // Enable the module if the user did not disable it on purpose.
     module_enable(array('l10n_client'));
