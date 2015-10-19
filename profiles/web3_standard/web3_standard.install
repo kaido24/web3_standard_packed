@@ -67,8 +67,8 @@ function web3_standard_install() {
   $full_html_format = (object) $full_html_format;
   filter_format_save($full_html_format);
 
-  $default_theme = 'bartik';
-  $admin_theme = 'shiny';
+  $default_theme = 'bootstrap';
+  $admin_theme = 'adminimal';
   // disable all themes
   db_update('system')
     ->fields(array('status' => 0))
