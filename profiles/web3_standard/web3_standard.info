@@ -85,6 +85,11 @@ dependencies[] = advagg
 dependencies[] = advagg_css_compress
 dependencies[] = advagg_bundler
 dependencies[] = advagg_mod
+
+;Prepare for translation
+dependencies[] = title
+
+
 ;dependencies[] = entitycache
 ;dependencies[] = authcache
 ;dependencies[] = authcache_builtin

@@ -16,6 +16,7 @@ if (!function_exists("system_form_install_configure_form_alter")) {
     $form['site_information']['site_mail']['#default_value'] =  $mail;
     $form['admin_account']['account']['name']['#default_value'] = 'admin';
     $form['admin_account']['account']['mail']['#default_value'] = $mail;
+    $form['server_settings']['site_default_country']['#default_value'] =  'EE';
     $form['l10n_client_wrapper'] = array(
     '#type' => 'fieldset',
     '#title' => st('On-page translation and sharing'),

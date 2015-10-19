@@ -86,6 +86,7 @@ function web3_standard_install() {
     ->condition('type', 'theme')
     ->condition('name', $admin_theme)
     ->execute();
+  variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
   // activate admin theme when editing a node
   variable_set('node_admin_theme', '1');
@@ -141,6 +142,39 @@ function web3_standard_install() {
       'cache' => -1,
     ),
   );
+
+  $title_file = array(
+    'auto_attach' => array(
+      'filename' => 'filename',
+    ),
+    'hide_label' => array(
+      'page' => 'page',
+      'entity' => 'entity',
+    ),
+  );
+  variable_set('title_file', $title_file);
+
+  $title_node = array(
+    'auto_attach' => array(
+      'title' => 'title',
+    ),
+    'hide_label' => array(
+      'page' => 'page',
+      'entity' => 'entity',
+    ),
+  );
+  variable_set('title_node', $title_node);
+
+  $title_taxonomy = array(
+    'auto_attach' => array(
+      'title' => 'title',
+    ),
+    'hide_label' => array(
+      'page' => 'page',
+      'entity' => 'entity',
+    ),
+  );
+  variable_set('title_taxonomy', $title_taxonomy);
   // Insert default pre-defined node types into the database. For a complete
   // list of available node type attributes, refer to the node type API
   // documentation at: http://api.drupal.org/api/HEAD/function/hook_node_info.
