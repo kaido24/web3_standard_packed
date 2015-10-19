@@ -92,7 +92,7 @@ function web3_standard_custom_submit($form, &$form_state) {
     // Look at http://drupal.stackexchange.com/questions/45568/how-to-programmatically-submit-the-file-system-settings-form
     $fs = array();
     $fs['values']['file_private_path'] = $form_state['values']['file_private_path'];
-    $fs['values']['op'] = t('Save configuration');
+    $fs['values']['op'] = st('Save configuration');
     drupal_form_submit('system_file_system_settings', $fs);
   }
   if ($form_state['values']['l10n_client_enable']) {
