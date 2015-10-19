@@ -43,7 +43,6 @@ dependencies[] = pathauto
 dependencies[] = token
 dependencies[] = libraries
 dependencies[] = module_filter
-dependencies[] = userone
 dependencies[] = globalredirect
 dependencies[] = redirect
 dependencies[] = xmlsitemap
@@ -62,6 +61,7 @@ dependencies[] = media
 dependencies[] = media_internet
 dependencies[] = media_wysiwyg_view_mode
 dependencies[] = plupload
+dependencies[] = imagemagick
 ;dependencies[] = media_multiselect
 
 ; User interface
@@ -73,9 +73,14 @@ dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = views_ui
 
+;Display suite
+dependencies[] = ds
+dependencies[] = ds_ui
+dependencies[] = ds_extras
+dependencies[] = ds_bootstrap_layouts
+
 ;Performance managment
 ;dependencies[] = filecache
-dependencies[] = imageapi_optimize
 dependencies[] = advagg
 dependencies[] = advagg_css_compress
 dependencies[] = advagg_bundler
