@@ -180,6 +180,21 @@ function web3_standard_install() {
   variable_set('menu_options_article', array());
   variable_set('menu_parent_article', 'main-menu:0');
 
+  variable_set('media_wysiwyg_view_mode_image_file_wysiwyg_view_mode_status', TRUE);
+  variable_set('media_wysiwyg_view_mode_image_wysiwyg_restricted_view_modes_status', TRUE);
+  $restrict_image_view_modes = array(
+    'default' => 'default',
+    'teaser' => 'teaser',
+    'rss' => 'rss',
+    'wysiwyg' => 'wysiwyg',
+    'token' => 'token',
+    'full' => 0,
+    'preview' => 'preview',
+  );
+  variable_set('media_wysiwyg_view_mode_image_wysiwyg_restricted_view_modes', $restrict_image_view_modes);
+
+
+
   // drop system / user blocks to ensure correct building
   db_delete('block')->condition('module', 'system')->execute();
   db_delete('block')->condition('module', 'user')->execute();

@@ -75,7 +75,7 @@ dependencies[] = views_ui
 
 ;Performance managment
 ;dependencies[] = filecache
-dependencies[] = imageapi_optimize
+;dependencies[] = imageapi_optimize
 dependencies[] = advagg
 dependencies[] = advagg_css_compress
 dependencies[] = advagg_bundler
