@@ -17,9 +17,11 @@ if (!function_exists("system_form_install_configure_form_alter")) {
     $form['admin_account']['account']['name']['#default_value'] = 'admin';
     $form['admin_account']['account']['mail']['#default_value'] = $mail;
     $form['server_settings']['site_default_country']['#default_value'] =  'EE';
+    $file_link = 'http://drupal.org/documentation/modules/file';
     $form['server_settings']['file_private_path'] = array(
       '#type' =>  'textfield',
       '#title' =>  st('Private file system path'),
+      '#description' => st('If unsure add sites/default/files/private. Learn more !link', array('!link' => l($file_link, $file_link))),
       '#default_value' =>  '',
       '#weight' => 10,
       '#required' => TRUE,

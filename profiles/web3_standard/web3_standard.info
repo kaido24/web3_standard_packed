@@ -5,6 +5,8 @@ version = VERSION
 ; ----------
 ; Dependencies
 ; ----------
+;Prepare for translation
+dependencies[] = title
 ; Administration
 dependencies[] = admin_menu
 ;dependencies[] = admin_language
@@ -62,6 +64,7 @@ dependencies[] = media_internet
 dependencies[] = media_wysiwyg_view_mode
 dependencies[] = plupload
 dependencies[] = imagemagick
+dependencies[] = imagemagick_advanced
 ;dependencies[] = media_multiselect
 
 ; User interface
@@ -86,8 +89,8 @@ dependencies[] = advagg_css_compress
 dependencies[] = advagg_bundler
 dependencies[] = advagg_mod
 
-;Prepare for translation
-dependencies[] = title
+;jQuery
+dependencies[] = jquery_update
 
 
 ;dependencies[] = entitycache
