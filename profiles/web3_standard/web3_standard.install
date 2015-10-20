@@ -377,7 +377,7 @@ function web3_standard_install() {
   drupal_get_messages();
   variable_set('pathauto_node_pattern', '[node:title]');
   variable_set('pasteformat_cleanup_format', 'full_html');
-  
+
   // Imagemagick
   variable_set('image_toolkit', 'imagemagick');
   variable_set('imagemagick_advanced_profile', 'sites/all/libraries/sRGB_IEC61966-2-1_black_scaled.icc');
@@ -385,4 +385,7 @@ function web3_standard_install() {
 
   // JQuery settings
   variable_set('jquery_update_jquery_version', '1.8');
+  
+  // Display suite
+  variable_set('ds_extras_field_template', 1);
 }
