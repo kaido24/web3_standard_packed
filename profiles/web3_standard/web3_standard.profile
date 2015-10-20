@@ -21,8 +21,8 @@ if (!function_exists("system_form_install_configure_form_alter")) {
     $form['server_settings']['file_private_path'] = array(
       '#type' =>  'textfield',
       '#title' =>  st('Private file system path'),
-      '#description' => st('If unsure add sites/default/files/private. Learn more !link', array('!link' => l($file_link, $file_link))),
-      '#default_value' =>  '',
+      '#description' => st('Learn more !link', array('!link' => l($file_link, $file_link))),
+      '#default_value' =>  'sites/all/default/private',
       '#weight' => 10,
       '#required' => TRUE,
     );
@@ -82,7 +82,9 @@ if (!function_exists("system_form_install_configure_form_alter")) {
 if (!function_exists("system_form_install_settings_form_alter")) {
   function system_form_install_settings_form_alter(&$form, $form_state) {
     $form['settings']['mysql']['advanced_options']['host']['#default_value'] = '127.0.0.1';
+    $form['settings']['mysql']['advanced_options']['db_prefix']['#default_value'] = 'd7_';
     $form['settings']['pgsql']['advanced_options']['host']['#default_value'] = '127.0.0.1';
+    $form['settings']['pgsql']['advanced_options']['db_prefix']['#default_value'] = 'd7_';
   }
 }
 
