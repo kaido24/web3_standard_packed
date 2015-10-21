@@ -380,12 +380,16 @@ function web3_standard_install() {
 
   // Imagemagick
   variable_set('image_toolkit', 'imagemagick');
-  variable_set('imagemagick_advanced_profile', 'sites/all/libraries/sRGB_IEC61966-2-1_black_scaled.icc');
   variable_set('imagemagick_advanced_density', '72');
-
+  variable_set('imagemagick_advanced_profile', 'sites/all/libraries/sRGB_IEC61966-2-1_black_scaled.icc');
+  $im_settings = array();
+  $im_settings['values']['op'] = st('Save configuration');
+  drupal_form_submit('system_image_toolkit_settings', $im_settings);
+  
   // JQuery settings
   variable_set('jquery_update_jquery_version', '1.8');
-  
+
   // Display suite
   variable_set('ds_extras_field_template', 1);
+  variable_set('ft-default', 'theme_ds_field_reset');
 }

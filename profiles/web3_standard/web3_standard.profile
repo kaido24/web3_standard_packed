@@ -22,7 +22,7 @@ if (!function_exists("system_form_install_configure_form_alter")) {
       '#type' =>  'textfield',
       '#title' =>  st('Private file system path'),
       '#description' => st('Learn more !link', array('!link' => l($file_link, $file_link))),
-      '#default_value' =>  'sites/all/default/private',
+      '#default_value' =>  'sites/default/files/private',
       '#weight' => 10,
       '#required' => TRUE,
     );
