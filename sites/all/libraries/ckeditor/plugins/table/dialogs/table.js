@@ -1,21 +1,466 @@
-﻿/*
- Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
-*/
-(function(){function v(a){for(var f=0,n=0,m=0,p,e=a.$.rows.length;m<e;m++){p=a.$.rows[m];for(var d=f=0,c,b=p.cells.length;d<b;d++)c=p.cells[d],f+=c.colSpan;f>n&&(n=f)}return n}function r(a){return function(){var f=this.getValue(),f=!!(CKEDITOR.dialog.validate.integer()(f)&&0<f);f||(alert(a),this.select());return f}}function q(a,f){var n=function(e){return new CKEDITOR.dom.element(e,a.document)},q=a.editable(),p=a.plugins.dialogadvtab;return{title:a.lang.table.title,minWidth:310,minHeight:CKEDITOR.env.ie?
-310:280,onLoad:function(){var e=this,a=e.getContentElement("advanced","advStyles");if(a)a.on("change",function(){var a=this.getStyle("width",""),b=e.getContentElement("info","txtWidth");b&&b.setValue(a,!0);a=this.getStyle("height","");(b=e.getContentElement("info","txtHeight"))&&b.setValue(a,!0)})},onShow:function(){var e=a.getSelection(),d=e.getRanges(),c,b=this.getContentElement("info","txtRows"),h=this.getContentElement("info","txtCols"),t=this.getContentElement("info","txtWidth"),g=this.getContentElement("info",
-"txtHeight");"tableProperties"==f&&((e=e.getSelectedElement())&&e.is("table")?c=e:0<d.length&&(CKEDITOR.env.webkit&&d[0].shrink(CKEDITOR.NODE_ELEMENT),c=a.elementPath(d[0].getCommonAncestor(!0)).contains("table",1)),this._.selectedElement=c);c?(this.setupContent(c),b&&b.disable(),h&&h.disable()):(b&&b.enable(),h&&h.enable());t&&t.onChange();g&&g.onChange()},onOk:function(){var e=a.getSelection(),d=this._.selectedElement&&e.createBookmarks(),c=this._.selectedElement||n("table"),b={};this.commitContent(b,
-c);if(b.info){b=b.info;if(!this._.selectedElement)for(var h=c.append(n("tbody")),f=parseInt(b.txtRows,10)||0,g=parseInt(b.txtCols,10)||0,k=0;k<f;k++)for(var l=h.append(n("tr")),m=0;m<g;m++)l.append(n("td")).appendBogus();f=b.selHeaders;if(!c.$.tHead&&("row"==f||"both"==f)){l=new CKEDITOR.dom.element(c.$.createTHead());h=c.getElementsByTag("tbody").getItem(0);h=h.getElementsByTag("tr").getItem(0);for(k=0;k<h.getChildCount();k++)g=h.getChild(k),g.type!=CKEDITOR.NODE_ELEMENT||g.data("cke-bookmark")||
-(g.renameNode("th"),g.setAttribute("scope","col"));l.append(h.remove())}if(null!==c.$.tHead&&"row"!=f&&"both"!=f){l=new CKEDITOR.dom.element(c.$.tHead);h=c.getElementsByTag("tbody").getItem(0);for(m=h.getFirst();0<l.getChildCount();){h=l.getFirst();for(k=0;k<h.getChildCount();k++)g=h.getChild(k),g.type==CKEDITOR.NODE_ELEMENT&&(g.renameNode("td"),g.removeAttribute("scope"));h.insertBefore(m)}l.remove()}if(!this.hasColumnHeaders&&("col"==f||"both"==f))for(l=0;l<c.$.rows.length;l++)g=new CKEDITOR.dom.element(c.$.rows[l].cells[0]),
-g.renameNode("th"),g.setAttribute("scope","row");if(this.hasColumnHeaders&&"col"!=f&&"both"!=f)for(k=0;k<c.$.rows.length;k++)l=new CKEDITOR.dom.element(c.$.rows[k]),"tbody"==l.getParent().getName()&&(g=new CKEDITOR.dom.element(l.$.cells[0]),g.renameNode("td"),g.removeAttribute("scope"));b.txtHeight?c.setStyle("height",b.txtHeight):c.removeStyle("height");b.txtWidth?c.setStyle("width",b.txtWidth):c.removeStyle("width");c.getAttribute("style")||c.removeAttribute("style")}if(this._.selectedElement)try{e.selectBookmarks(d)}catch(p){}else a.insertElement(c),
-setTimeout(function(){var e=new CKEDITOR.dom.element(c.$.rows[0].cells[0]),b=a.createRange();b.moveToPosition(e,CKEDITOR.POSITION_AFTER_START);b.select()},0)},contents:[{id:"info",label:a.lang.table.title,elements:[{type:"hbox",widths:[null,null],styles:["vertical-align:top"],children:[{type:"vbox",padding:0,children:[{type:"text",id:"txtRows","default":3,label:a.lang.table.rows,required:!0,controlStyle:"width:5em",validate:r(a.lang.table.invalidRows),setup:function(e){this.setValue(e.$.rows.length)},
-commit:m},{type:"text",id:"txtCols","default":2,label:a.lang.table.columns,required:!0,controlStyle:"width:5em",validate:r(a.lang.table.invalidCols),setup:function(e){this.setValue(v(e))},commit:m},{type:"html",html:"\x26nbsp;"},{type:"select",id:"selHeaders",requiredContent:"th","default":"",label:a.lang.table.headers,items:[[a.lang.table.headersNone,""],[a.lang.table.headersRow,"row"],[a.lang.table.headersColumn,"col"],[a.lang.table.headersBoth,"both"]],setup:function(e){var a=this.getDialog();
-a.hasColumnHeaders=!0;for(var c=0;c<e.$.rows.length;c++){var b=e.$.rows[c].cells[0];if(b&&"th"!=b.nodeName.toLowerCase()){a.hasColumnHeaders=!1;break}}null!==e.$.tHead?this.setValue(a.hasColumnHeaders?"both":"row"):this.setValue(a.hasColumnHeaders?"col":"")},commit:m},{type:"text",id:"txtBorder",requiredContent:"table[border]","default":a.filter.check("table[border]")?1:0,label:a.lang.table.border,controlStyle:"width:3em",validate:CKEDITOR.dialog.validate.number(a.lang.table.invalidBorder),setup:function(a){this.setValue(a.getAttribute("border")||
-"")},commit:function(a,d){this.getValue()?d.setAttribute("border",this.getValue()):d.removeAttribute("border")}},{id:"cmbAlign",type:"select",requiredContent:"table[align]","default":"",label:a.lang.common.align,items:[[a.lang.common.notSet,""],[a.lang.common.alignLeft,"left"],[a.lang.common.alignCenter,"center"],[a.lang.common.alignRight,"right"]],setup:function(a){this.setValue(a.getAttribute("align")||"")},commit:function(a,d){this.getValue()?d.setAttribute("align",this.getValue()):d.removeAttribute("align")}}]},
-{type:"vbox",padding:0,children:[{type:"hbox",widths:["5em"],children:[{type:"text",id:"txtWidth",requiredContent:"table{width}",controlStyle:"width:5em",label:a.lang.common.width,title:a.lang.common.cssLengthTooltip,"default":a.filter.check("table{width}")?500>q.getSize("width")?"100%":500:0,getValue:u,validate:CKEDITOR.dialog.validate.cssLength(a.lang.common.invalidCssLength.replace("%1",a.lang.common.width)),onChange:function(){var a=this.getDialog().getContentElement("advanced","advStyles");a&&
-a.updateStyle("width",this.getValue())},setup:function(a){a=a.getStyle("width");this.setValue(a)},commit:m}]},{type:"hbox",widths:["5em"],children:[{type:"text",id:"txtHeight",requiredContent:"table{height}",controlStyle:"width:5em",label:a.lang.common.height,title:a.lang.common.cssLengthTooltip,"default":"",getValue:u,validate:CKEDITOR.dialog.validate.cssLength(a.lang.common.invalidCssLength.replace("%1",a.lang.common.height)),onChange:function(){var a=this.getDialog().getContentElement("advanced",
-"advStyles");a&&a.updateStyle("height",this.getValue())},setup:function(a){(a=a.getStyle("height"))&&this.setValue(a)},commit:m}]},{type:"html",html:"\x26nbsp;"},{type:"text",id:"txtCellSpace",requiredContent:"table[cellspacing]",controlStyle:"width:3em",label:a.lang.table.cellSpace,"default":a.filter.check("table[cellspacing]")?1:0,validate:CKEDITOR.dialog.validate.number(a.lang.table.invalidCellSpacing),setup:function(a){this.setValue(a.getAttribute("cellSpacing")||"")},commit:function(a,d){this.getValue()?
-d.setAttribute("cellSpacing",this.getValue()):d.removeAttribute("cellSpacing")}},{type:"text",id:"txtCellPad",requiredContent:"table[cellpadding]",controlStyle:"width:3em",label:a.lang.table.cellPad,"default":a.filter.check("table[cellpadding]")?1:0,validate:CKEDITOR.dialog.validate.number(a.lang.table.invalidCellPadding),setup:function(a){this.setValue(a.getAttribute("cellPadding")||"")},commit:function(a,d){this.getValue()?d.setAttribute("cellPadding",this.getValue()):d.removeAttribute("cellPadding")}}]}]},
-{type:"html",align:"right",html:""},{type:"vbox",padding:0,children:[{type:"text",id:"txtCaption",requiredContent:"caption",label:a.lang.table.caption,setup:function(a){this.enable();a=a.getElementsByTag("caption");if(0<a.count()){a=a.getItem(0);var d=a.getFirst(CKEDITOR.dom.walker.nodeType(CKEDITOR.NODE_ELEMENT));d&&!d.equals(a.getBogus())?(this.disable(),this.setValue(a.getText())):(a=CKEDITOR.tools.trim(a.getText()),this.setValue(a))}},commit:function(e,d){if(this.isEnabled()){var c=this.getValue(),
-b=d.getElementsByTag("caption");if(c)0<b.count()?(b=b.getItem(0),b.setHtml("")):(b=new CKEDITOR.dom.element("caption",a.document),d.getChildCount()?b.insertBefore(d.getFirst()):b.appendTo(d)),b.append(new CKEDITOR.dom.text(c,a.document));else if(0<b.count())for(c=b.count()-1;0<=c;c--)b.getItem(c).remove()}}},{type:"text",id:"txtSummary",bidi:!0,requiredContent:"table[summary]",label:a.lang.table.summary,setup:function(a){this.setValue(a.getAttribute("summary")||"")},commit:function(a,d){this.getValue()?
-d.setAttribute("summary",this.getValue()):d.removeAttribute("summary")}}]}]},p&&p.createAdvancedTab(a,null,"table")]}}var u=CKEDITOR.tools.cssLength,m=function(a){var f=this.id;a.info||(a.info={});a.info[f]=this.getValue()};CKEDITOR.dialog.add("table",function(a){return q(a,"table")});CKEDITOR.dialog.add("tableProperties",function(a){return q(a,"tableProperties")})})();
+/**
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or http://ckeditor.com/license
+ */
+
+(function() {
+	var defaultToPixel = CKEDITOR.tools.cssLength;
+
+	var commitValue = function(data) {
+		//console.lo
+		var id = this.id;
+		if (!data.info)
+			data.info = {};
+		data.info[id] = this.getValue();
+	};
+
+	function tableColumns(table) {
+		var cols = 0,
+			maxCols = 0;
+		for (var i = 0, row, rows = table.$.rows.length; i < rows; i++) {
+			row = table.$.rows[i], cols = 0;
+			for (var j = 0, cell, cells = row.cells.length; j < cells; j++) {
+				cell = row.cells[j];
+				cols += cell.colSpan;
+			}
+
+			cols > maxCols && (maxCols = cols);
+		}
+
+		return maxCols;
+	}
+
+
+	// Whole-positive-integer validator.
+	function validatorNum(msg) {
+		return function() {
+			var value = this.getValue(),
+				pass = !!(CKEDITOR.dialog.validate.integer()(value) && value > 0);
+
+			if (!pass) {
+				alert(msg); // jshint ignore:line
+				this.select();
+			}
+
+			return pass;
+		};
+	}
+
+	function tableDialog(editor, command) {
+		var makeElement = function(name) {
+			return new CKEDITOR.dom.element(name, editor.document);
+		};
+
+		var editable = editor.editable();
+
+		var dialogadvtab = editor.plugins.dialogadvtab;
+
+		return {
+			title: editor.lang.table.title,
+			minWidth: 310,
+			minHeight: CKEDITOR.env.ie ? 310 : 280,
+      // Act on first load.
+			// onLoad: function() {
+			// 	var dialog = this;
+			// //	console.log('onLoad will react every time we first open the dialog window');
+
+			// 	var styles = dialog.getContentElement('advanced', 'advStyles');
+				
+			// 	if (styles) {
+			// 		styles.on('change', function() {
+			// 			// Synchronize width value.
+			// 			var width = this.getStyle('width', ''),
+			// 				txtWidth = dialog.getContentElement('info', 'txtWidth');
+				
+			// 			txtWidth && txtWidth.setValue(width, true);
+				
+			// 		});
+			// 	}
+			// },
+	
+			onShow: function() {
+				// Detect if there's a selected table.
+			//	console.log('OnShow will react on every time we open table dialog');
+				var selection = editor.getSelection(),
+					ranges = selection.getRanges(),
+					table;
+
+				var rowsInput = this.getContentElement('info', 'txtRows'),
+					colsInput = this.getContentElement('info', 'txtCols');
+					//widthInput = this.getContentElement('info', 'txtWidth');
+
+				if (command == 'tableProperties') {
+					var selected = selection.getSelectedElement();
+					if (selected && selected.is('table'))
+						table = selected;
+					else if (ranges.length > 0) {
+						// Webkit could report the following range on cell selection (#4948):
+						// <table><tr><td>[&nbsp;</td></tr></table>]
+						if (CKEDITOR.env.webkit)
+							ranges[0].shrink(CKEDITOR.NODE_ELEMENT);
+
+						table = editor.elementPath(ranges[0].getCommonAncestor(true)).contains('table', 1);
+					}
+
+					// Save a reference to the selected table, and push a new set of default values.
+					this._.selectedElement = table;
+				}
+
+				// Enable or disable the row, cols, width fields.
+				if (table) {
+					this.setupContent(table);
+					rowsInput && rowsInput.disable();
+					colsInput && colsInput.disable();
+				} else {
+					rowsInput && rowsInput.enable();
+					colsInput && colsInput.enable();
+				}
+
+				// Call the onChange method for the width field so
+				// this get reflected into the Advanced tab.
+			//	widthInput && widthInput.onChange();
+			},
+			onOk: function() {
+			//	console.log('onOk: react on table insertion/change');
+				var selection = editor.getSelection(),
+					bms = this._.selectedElement && selection.createBookmarks();
+
+				// If table variable doesn't exist create table with content additionally create data variable.
+				var table = this._.selectedElement || makeElement('table'),
+					data = {};
+				// commitContent is CKeditor provided function.
+				// Get all the info from dialog and assigns it to data variable.
+				this.commitContent(data, table);
+
+				if (data.info) {
+					var info = data.info;
+
+					// Generate the rows and cols.
+					if (!this._.selectedElement) {
+						var tbody = table.append(makeElement('tbody')),
+							rows = parseInt(info.txtRows, 10) || 0,
+							cols = parseInt(info.txtCols, 10) || 0;
+
+						for (var i = 0; i < rows; i++) {
+							var row = tbody.append(makeElement('tr'));
+							for (var j = 0; j < cols; j++) {
+								var cell = row.append(makeElement('td'));
+								cell.appendBogus();
+							}
+						}
+					}
+
+					// Modify the table headers. Depends on having rows and cols generated
+					// correctly so it can't be done in commit functions.
+
+					// Should we make a <thead>?
+					var headers = info.selHeaders;
+					if (!table.$.tHead && (headers == 'row' || headers == 'both')) {
+						var thead = new CKEDITOR.dom.element(table.$.createTHead());
+						tbody = table.getElementsByTag('tbody').getItem(0);
+						var theRow = tbody.getElementsByTag('tr').getItem(0);
+
+						// Change TD to TH:
+						for (i = 0; i < theRow.getChildCount(); i++) {
+							var th = theRow.getChild(i);
+							// Skip bookmark nodes. (#6155)
+							if (th.type == CKEDITOR.NODE_ELEMENT && !th.data('cke-bookmark')) {
+								th.renameNode('th');
+								th.setAttribute('scope', 'col');
+							}
+						}
+						thead.append(theRow.remove());
+					}
+
+					if (table.$.tHead !== null && !(headers == 'row' || headers == 'both')) {
+						// Move the row out of the THead and put it in the TBody:
+						thead = new CKEDITOR.dom.element(table.$.tHead);
+						tbody = table.getElementsByTag('tbody').getItem(0);
+
+						var previousFirstRow = tbody.getFirst();
+						while (thead.getChildCount() > 0) {
+							theRow = thead.getFirst();
+							for (i = 0; i < theRow.getChildCount(); i++) {
+								var newCell = theRow.getChild(i);
+								if (newCell.type == CKEDITOR.NODE_ELEMENT) {
+									newCell.renameNode('td');
+									newCell.removeAttribute('scope');
+								}
+							}
+							theRow.insertBefore(previousFirstRow);
+						}
+						thead.remove();
+					}
+
+					// Should we make all first cells in a row TH?
+					if (!this.hasColumnHeaders && (headers == 'col' || headers == 'both')) {
+						for (row = 0; row < table.$.rows.length; row++) {
+							newCell = new CKEDITOR.dom.element(table.$.rows[row].cells[0]);
+							newCell.renameNode('th');
+							newCell.setAttribute('scope', 'row');
+						}
+					}
+
+					// Should we make all first TH-cells in a row make TD? If 'yes' we do it the other way round :-)
+					if ((this.hasColumnHeaders) && !(headers == 'col' || headers == 'both')) {
+						for (i = 0; i < table.$.rows.length; i++) {
+							row = new CKEDITOR.dom.element(table.$.rows[i]);
+							if (row.getParent().getName() == 'tbody') {
+								newCell = new CKEDITOR.dom.element(row.$.cells[0]);
+								newCell.renameNode('td');
+								newCell.removeAttribute('scope');
+							}
+						}
+					}
+
+					// Set the width.
+				//	info.txtWidth ? table.setStyle('width', info.txtWidth) : table.removeStyle('width');
+
+
+				}
+
+				// Insert the table element if we're creating one.
+				if (!this._.selectedElement) {
+					editor.insertElement(table);
+					// Override the default cursor position after insertElement to place
+					// cursor inside the first cell (#7959), IE needs a while.
+					setTimeout(function() {
+						var firstCell = new CKEDITOR.dom.element(table.$.rows[0].cells[0]);
+						var range = editor.createRange();
+						range.moveToPosition(firstCell, CKEDITOR.POSITION_AFTER_START);
+						range.select();
+					}, 0);
+				}
+				// Properly restore the selection, (#4822) but don't break
+				// because of this, e.g. updated table caption.
+				else {
+					try {
+						selection.selectBookmarks(bms);
+					} catch (er) {}
+				}
+				// There should be table. So lets add our classes.
+				table.addClass('table');
+				table.setStyle('width', '100%');
+				if (info.tableStriped)
+					table.addClass('table-striped');
+				else
+					table.removeClass('table-striped');
+
+				if (info.tableHover)
+					table.addClass('table-hover');
+				else
+					table.removeClass('table-hover');
+				if (info.tableBordered)
+					table.addClass('table-bordered');
+				else
+					table.removeClass('table-bordered');
+
+				if (info.tableCondensed)
+					table.addClass('table-condensed');
+				else
+					table.removeClass('table-condensed');
+
+				if (!table.getParent().hasClass('table-responsive')) {
+					var tablewrapper = makeElement('div');
+					tablewrapper.addClass('table-responsive');
+					tablewrapper.append(table);
+					editor.insertElement(tablewrapper);
+				}
+			},
+			contents: [{
+					id: 'info',
+					label: editor.lang.table.title,
+					elements: [{
+						type: 'hbox',
+						widths: [null, null],
+						styles: ['vertical-align:top'],
+						children: [{
+							type: 'vbox',
+							padding: 0,
+							children: [{
+								type: 'text',
+								id: 'txtRows',
+								'default': 3,
+								label: editor.lang.table.rows,
+								required: true,
+								controlStyle: 'width:5em',
+								validate: validatorNum(editor.lang.table.invalidRows),
+								setup: function(selectedElement) {
+									this.setValue(selectedElement.$.rows.length);
+								},
+								commit: commitValue
+							}, {
+								type: 'text',
+								id: 'txtCols',
+								'default': 2,
+								label: editor.lang.table.columns,
+								required: true,
+								controlStyle: 'width:5em',
+								validate: validatorNum(editor.lang.table.invalidCols),
+								setup: function(selectedTable) {
+									this.setValue(tableColumns(selectedTable));
+								},
+								commit: commitValue
+							}, {
+								type: 'html',
+								html: '&nbsp;'
+							}, {
+								type: 'select',
+								id: 'selHeaders',
+								requiredContent: 'th',
+								'default': '',
+								label: editor.lang.table.headers,
+								items: [
+									[editor.lang.table.headersNone, ''],
+									[editor.lang.table.headersRow, 'row'],
+									[editor.lang.table.headersColumn, 'col'],
+									[editor.lang.table.headersBoth, 'both']
+								],
+								setup: function(selectedTable) {
+									// Fill in the headers field.
+									var dialog = this.getDialog();
+									dialog.hasColumnHeaders = true;
+
+									// Check if all the first cells in every row are TH
+									for (var row = 0; row < selectedTable.$.rows.length; row++) {
+										// If just one cell isn't a TH then it isn't a header column
+										var headCell = selectedTable.$.rows[row].cells[0];
+										if (headCell && headCell.nodeName.toLowerCase() != 'th') {
+											dialog.hasColumnHeaders = false;
+											break;
+										}
+									}
+
+									// Check if the table contains <thead>.
+									if ((selectedTable.$.tHead !== null))
+										this.setValue(dialog.hasColumnHeaders ? 'both' : 'row');
+									else
+										this.setValue(dialog.hasColumnHeaders ? 'col' : '');
+								},
+								commit: commitValue
+							},
+							{
+								type: 'html',
+							 	id: 'txtBorder',
+								html: '&nbsp;',
+								commit: function() {
+									// We can remove it after changing the name of this plugin.
+								}
+							}
+						]
+						}, {
+							type: 'hbox',
+							padding: 0,
+							children: [{
+								type: 'vbox',
+								widths: ['10em'],
+								 children: [
+								{
+									type: 'checkbox',
+									id: 'tableStriped',
+									label: 'Add stripes',
+									'default': '',
+									setup: function(selectedTable) {
+										var val = selectedTable.hasClass('table-striped');
+										this.setValue(val);
+									},
+									commit: commitValue
+								}, {
+									type: 'checkbox',
+									id: 'tableHover',
+									label: 'Add hover effect',
+									'default': '',
+									setup: function(selectedTable) {
+										var val = selectedTable.hasClass('table-hover');
+										this.setValue(val);
+									},
+									commit: commitValue
+								}, {
+									type: 'checkbox',
+									id: 'tableBordered',
+									label: 'Add borders',
+									'default': '',
+									setup: function(selectedTable) {
+										var val = selectedTable.hasClass('table-bordered');
+										this.setValue(val);
+									},
+
+									commit: commitValue
+								}, {
+									type: 'checkbox',
+									id: 'tableCondensed',
+									label: 'Compact style table',
+									'default': '',
+									setup: function(selectedTable) {
+									this.enable();
+										var val = selectedTable.hasClass('table-condensed');
+										this.setValue(val);
+									},
+									commit: commitValue
+								}]
+							}]
+						}]
+					}, {
+						type: 'vbox',
+						padding: 0,
+						children: [{
+							type: 'text',
+							id: 'txtCaption',
+							requiredContent: 'caption',
+							label: editor.lang.table.caption,
+							setup: function(selectedTable) {
+								this.enable();
+
+								var nodeList = selectedTable.getElementsByTag('caption');
+								if (nodeList.count() > 0) {
+									var caption = nodeList.getItem(0);
+									var firstElementChild = caption.getFirst(CKEDITOR.dom.walker.nodeType(CKEDITOR.NODE_ELEMENT));
+
+									if (firstElementChild && !firstElementChild.equals(caption.getBogus())) {
+										this.disable();
+										this.setValue(caption.getText());
+										return;
+									}
+
+									caption = CKEDITOR.tools.trim(caption.getText());
+									this.setValue(caption);
+								}
+							},
+							commit: function(data, table) {
+								if (!this.isEnabled())
+									return;
+
+								var caption = this.getValue(),
+									captionElement = table.getElementsByTag('caption');
+								if (caption) {
+									if (captionElement.count() > 0) {
+										captionElement = captionElement.getItem(0);
+										captionElement.setHtml('');
+									} else {
+										captionElement = new CKEDITOR.dom.element('caption', editor.document);
+										if (table.getChildCount())
+											captionElement.insertBefore(table.getFirst());
+										else
+											captionElement.appendTo(table);
+									}
+									captionElement.append(new CKEDITOR.dom.text(caption, editor.document));
+								} else if (captionElement.count() > 0) {
+									for (var i = captionElement.count() - 1; i >= 0; i--)
+										captionElement.getItem(i).remove();
+								}
+							}
+						}]
+					}]
+				},
+				dialogadvtab && dialogadvtab.createAdvancedTab(editor, null, 'table')
+			]
+		};
+	}
+
+	CKEDITOR.dialog.add('table', function(editor) {
+		return tableDialog(editor, 'table');
+	});
+	CKEDITOR.dialog.add('tableProperties', function(editor) {
+		return tableDialog(editor, 'tableProperties');
+	});
+})();
