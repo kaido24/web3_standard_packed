@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * Return an array of native editor plugins.
+ *
+ * Only to be used for native (internal) editor plugins.
+ *
+ * @see hook_wysiwyg_include_directory()
+ *
+ * @param $editor
+ *   The internal name of the currently processed editor.
+ * @param $version
+ *   The version of the currently processed editor.
+ *
+ * @return
+ *   An associative array having internal plugin names as keys and an array of
+ *   plugin meta-information as values.
+ */
+function wysiwyg_ckeditor_bootstrap_wysiwyg_plugin($editor, $version) {
+  switch ($editor) {
+    case 'ckeditor':
+      if ($version > 4) {
+        return array(
+          'btquicktable' => array(
+            'url' => 'http://web3.ee',
+            // The full path to the native editor plugin, no trailing slash.
+            // Ignored when 'internal' is set to TRUE below.
+            'path' => drupal_get_path('module', 'wysiwyg_ckeditor_bootstrap') . '/btquicktable',
+            'filename' => 'plugin.js',
+            'buttons' => array(
+              'btquicktable' => t('Quicktable Bootstrap 3 edition'),
+            ),
+            'load' => TRUE,
+            'internal' => FALSE,
+          ),
+        );
+      }
+      break;
+  }
+}
+// /**
+//  * Act on editor profile settings.
+//  *
+//  * This hook is invoked from wysiwyg_get_editor_config() after the JavaScript
+//  * settings have been generated for an editor profile and before the settings
+//  * are added to the page. The settings may be customized or enhanced; typically
+//  * with options that cannot be controlled through Wysiwyg module's
+//  * administrative UI currently.
+//  *
+//  * Modules implementing this hook to enforce settings that can also be
+//  * controlled through the UI should also implement
+//  * hook_form_wysiwyg_profile_form_alter() to adjust or at least indicate on the
+//  * editor profile configuration form that certain/affected settings cannot be
+//  * changed.
+//  *
+//  * @param $settings
+//  *   An associative array of JavaScript settings to pass to the editor.
+//  * @param $context
+//  *   An associative array containing additional context information:
+//  *   - editor: The plugin definition array of the editor.
+//  *   - profile: The editor profile object, as loaded from the database.
+//  *   - theme: The name of the editor theme/skin.
+//  */
+// function wysiwyg_ckeditor_bootstrap_wysiwyg_editor_settings_alter(&$settings, $context) {
+//   // Each editor has its own collection of native settings that may be extended
+//   // or overridden. Please consult the respective official vendor documentation
+//   // for details.
+//   if ($context['profile']->editor == 'ckeditor') {
+//      //$settings['customConfig'] =  base_path() . drupal_get_path('module', 'wysiwyg_ckeditor_bootstrap') . '/js/custom_config.js';
+//   }
+// }
