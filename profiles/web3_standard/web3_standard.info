@@ -69,9 +69,7 @@ dependencies[] = imagemagick_advanced
 
 ; User interface
 dependencies[] = pasteformat
-dependencies[] = ckeditor
-dependencies[] = ckeditor_bootstrap_table
-dependencies[] = media_ckeditor_widget
+dependencies[] = wysiwyg
 dependencies[] = clientside_validation
 ; Views
 dependencies[] = views

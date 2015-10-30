@@ -11,7 +11,7 @@ Extra modules:
 Admin menu
 Admin views
 Entity
-Ckeditor
+Wysiwyg
 Pathauto
 Views
 Global redirect
