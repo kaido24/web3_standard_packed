@@ -1,0 +1,6 @@
+name = CKEditor Bootstrap Table tools
+description = Provides table wrapper and classes to table
+package = ckeditor
+core = 7.x
+
+dependencies[] = ckeditor
