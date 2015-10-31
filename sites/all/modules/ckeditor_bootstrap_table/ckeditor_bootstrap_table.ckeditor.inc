@@ -20,7 +20,7 @@ function ckeditor_bootstrap_table_ckeditor_plugin_alter(&$plugins) {
         'label' => 'Add table',
       ),
     ),
-  'default' => 'f',
+  'default' => 't',
   );
   $plugins['btquicktable'] = array(
     'name' => 'btquicktable',
@@ -28,10 +28,10 @@ function ckeditor_bootstrap_table_ckeditor_plugin_alter(&$plugins) {
     'path' => '%base_path%' . drupal_get_path('module', 'ckeditor_bootstrap_table') . '/js/plugins/btquicktable/',
     'buttons' => array(
       'Table' => array(
-       // 'icon' => 'icons/table.png',
+        'icon' => 'icons/table.png',
         'label' => 'Add table',
       ),
     ),
-    'default' => 'f',
+    'default' => 't',
   );
 }
