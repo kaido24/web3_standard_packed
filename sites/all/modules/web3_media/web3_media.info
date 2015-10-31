@@ -1,0 +1,4 @@
+name = Web3 media
+description = Media related settings and styles
+core = 7.x
+stylesheets[all][] = web3_media.css

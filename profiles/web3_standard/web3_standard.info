@@ -95,6 +95,9 @@ dependencies[] = advagg_mod
 ;jQuery
 dependencies[] = jquery_update
 
+;Custom
+dependencies[] = web3_media
+
 
 ;dependencies[] = entitycache
 ;dependencies[] = authcache
