@@ -63,6 +63,7 @@ dependencies[] = media
 dependencies[] = media_internet
 dependencies[] = media_wysiwyg_view_mode
 dependencies[] = plupload
+dependencies[] = media_oembed
 dependencies[] = imagemagick
 dependencies[] = imagemagick_advanced
 ;dependencies[] = media_multiselect
