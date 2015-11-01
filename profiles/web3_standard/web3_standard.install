@@ -213,58 +213,6 @@ function web3_standard_install() {
   // Set article menu default settings to no menu.
   variable_set('menu_options_article', array());
   variable_set('menu_parent_article', 'main-menu:0');
-// Set image view mode settings.
-  $image_view_mode_settings = array(
-    'view_modes' => array(
-      'teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'full' => array(
-        'custom_settings' => TRUE,
-      ),
-      'preview' => array(
-        'custom_settings' => TRUE,
-      ),
-      'wysiwyg' => array(
-        'custom_settings' => TRUE,
-      ),
-      'rss' => array(
-        'custom_settings' => FALSE,
-      ),
-      'token' => array(
-        'custom_settings' => FALSE,
-      ),
-    ),
-    'extra_fields' => array(
-      'form' => array(),
-      'display' => array(
-        'file' => array(
-          'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
-          ),
-          'full' => array(
-            'weight' => '0',
-            'visible' => TRUE,
-          ),
-        ),
-      ),
-    ),
-  );
-  variable_set('field_bundle_settings_file__image', $image_view_mode_settings);
-  // Restrict wysiwyg image options.
-//  variable_set('media_wysiwyg_view_mode_image_file_wysiwyg_view_mode_status', TRUE);
-  variable_set('media_wysiwyg_view_mode_image_wysiwyg_restricted_view_modes_status', TRUE);
-  $restrict_image_view_modes = array(
-    'default' => 'default',
-    'teaser' => 'teaser',
-    'rss' => 'rss',
-    'wysiwyg' => 'wysiwyg',
-    'token' => 'token',
-    'full' => 0,
-    'preview' => 'preview',
-  );
-  variable_set('media_wysiwyg_view_mode_image_wysiwyg_restricted_view_modes', $restrict_image_view_modes);
 
   // drop system / user blocks to ensure correct building
   db_delete('block')->condition('module', 'system')->execute();
@@ -335,5 +283,21 @@ function web3_standard_install() {
   variable_set('ds_extras_field_template', 1);
   variable_set('ft-default', 'theme_ds_field_reset');
 
-  //include_once DRUPAL_ROOT . '/include/ckeditor.inc';
+  $widget_buttons = array(
+    'widgetbootstrapLeftCol' => 'widgetbootstrapLeftCol',
+    'widgetbootstrapRightCol' => 'widgetbootstrapRightCol',
+    'widgetbootstrapTwoCol' => 'widgetbootstrapTwoCol',
+    'widgetbootstrapThreeCol' => 'widgetbootstrapThreeCol',
+    'widgetcommonBox' => 0,
+    'widgetcommonQuotebox' => 0,
+    'widgetbootstrapAlert' => 0,
+    'widgetbootstrapAccordion' => 0,
+    'oembed' => 0,
+    'codeSnippet' => 0,
+    'leaflet' => 0,
+    'FontAwesome' => 0,
+  );
+  variable_set('ckeditor_widgets_buttons', $widget_buttons);
+
+
 }

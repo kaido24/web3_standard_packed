@@ -1,0 +1,76 @@
+<?php
+function web3_media_install() {
+  // Set image view mode settings.
+  $view_mode_settings = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'preview' => array(
+        'custom_settings' => TRUE,
+      ),
+      'wysiwyg' => array(
+        'custom_settings' => TRUE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'file' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'full' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $restrict_view_modes = array(
+    'default' => 0,
+    'teaser' => 'teaser',
+    'rss' => 'rss',
+    'wysiwyg' => 'wysiwyg',
+    'token' => 'token',
+    'full' => 0,
+    'preview' => 'preview',
+  );
+  variable_set('field_bundle_settings_file__image', $view_mode_settings);
+  variable_set('media_wysiwyg_view_mode_image_file_wysiwyg_view_mode_status', 1);
+  variable_set('media_wysiwyg_view_mode_image_wysiwyg_restricted_view_modes_status', TRUE);
+  variable_set('media_wysiwyg_view_mode_image_wysiwyg_restricted_view_modes', $restrict_view_modes);
+
+  $video_restrict_view_modes = $restrict_view_modes;
+  #$video_restrict_view_modes['full'] = 'full';
+  variable_set('field_bundle_settings_file__video', $view_mode_settings);
+  variable_set('media_wysiwyg_view_mode_video_file_wysiwyg_view_mode_status', 1);
+  variable_set('media_wysiwyg_view_mode_video_wysiwyg_restricted_view_modes_status', TRUE);
+  variable_set('media_wysiwyg_view_mode_video_wysiwyg_restricted_view_modes', $video_restrict_view_modes);
+
+  $audio_restrict_view_modes = $restrict_view_modes;
+  #$audio_restrict_view_modes['full'] = 'full';
+  variable_set('field_bundle_settings_file__audio', $view_mode_settings);
+  variable_set('media_wysiwyg_view_mode_audio_file_wysiwyg_view_mode_status', 1);
+  variable_set('media_wysiwyg_view_mode_audio_wysiwyg_restricted_view_modes_status', TRUE);
+  variable_set('media_wysiwyg_view_mode_audio_wysiwyg_restricted_view_modes', $audio_restrict_view_modes);
+
+  $document_restrict_view_modes = $restrict_view_modes;
+  #$document_restrict_view_modes['full'] = 'full';
+  variable_set('field_bundle_settings_file__document', $view_mode_settings);
+  variable_set('media_wysiwyg_view_mode_document_file_wysiwyg_view_mode_status', 1);
+  variable_set('media_wysiwyg_view_mode_document_wysiwyg_restricted_view_modes_status', TRUE);
+  variable_set('media_wysiwyg_view_mode_document_wysiwyg_restricted_view_modes', $document_restrict_view_modes);
+
+}

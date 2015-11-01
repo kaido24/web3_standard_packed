@@ -1,11 +1,30 @@
 <?php
+
 // Make images responsive.
 function web3_media_preprocess_image(&$vars) {
+    if (!isset($vars['attributes']['class'])) {
+      $vars['attributes']['class'] = array();
+    }
     $vars['attributes']['class'][] = 'img-responsive';
     // http://getbootstrap.com/css/#overview-responsive-images
 }
 
 function web3_media_preprocess_image_style(&$vars) {
-    $vars['attributes']['class'][] = 'img-responsive';
-    // http://getbootstrap.com/css/#overview-responsive-images
+    if (!isset($vars['attributes']['class'])) {
+      $vars['attributes']['class'] = array();
+    }
+    if (is_array($vars['attributes']['class'])) {
+        $vars['attributes']['class'][] = 'img-responsive';
+    } else {
+      drupal_set_message(t('Can not add responsive image class since some module create image class as string!'), 'error');
+      // http://getbootstrap.com/css/#overview-responsive-images
+    }
+}
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function web3_media_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "file_entity" && $api == "file_default_displays") {
+    return array("version" => "1");
+  }
 }

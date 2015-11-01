@@ -32,6 +32,6 @@ function ckeditor_bootstrap_table_ckeditor_plugin_alter(&$plugins) {
         'label' => 'Add table',
       ),
     ),
-    'default' => 't',
+    'default' => 'f',
   );
 }
