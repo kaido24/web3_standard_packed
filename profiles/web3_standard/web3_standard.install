@@ -281,7 +281,7 @@ function web3_standard_install() {
 
   // Display suite
   variable_set('ds_extras_field_template', 1);
-  variable_set('ft-default', 'theme_ds_field_reset');
+  variable_set('ft-default', 'theme_ds_field_minimal');
 
   $widget_buttons = array(
     'widgetbootstrapLeftCol' => 'widgetbootstrapLeftCol',
