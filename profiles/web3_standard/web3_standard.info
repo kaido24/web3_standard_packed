@@ -73,7 +73,7 @@ dependencies[] = pasteformat
 dependencies[] = ckeditor
 dependencies[] = media_ckeditor_widget
 dependencies[] = ckeditor_widgets
-dependencies[] = ckeditor_bootstrap_table
+dependencies[] = ckeditor_bt_tools
 dependencies[] = clientside_validation
 ; Views
 dependencies[] = views
