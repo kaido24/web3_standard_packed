@@ -37,11 +37,23 @@ function ckeditor_bt_tools_ckeditor_plugin_alter(&$plugins) {
   $plugins['btgrid'] = array(
     'name' => 'btgrid',
     'desc' => t('Plugin for adding Bootstrap Grid'),
-    'path' => '%base_path%' . drupal_get_path('module', 'ckeditor_btgrid') . '/js/btgrid/',
+    'path' => '%base_path%' . drupal_get_path('module', 'ckeditor_bt_tools') . '/plugins/btgrid/',
     'buttons' => array(
       'btgrid' => array(
         'icon' => 'icons/btgrid.png',
         'label' => t('Add Bootstrap grid'),
+      ),
+    ),
+    'default' => 't',
+  );
+  $plugins['bt_link_btn'] = array(
+    'name' => 'bt_link_btn',
+    'desc' => t('Plugin for adding Bootstrap Link Buttons'),
+    'path' => '%base_path%' . drupal_get_path('module', 'ckeditor_bt_tools') . '/plugins/bt_link_btn/',
+    'buttons' => array(
+      'bt_link_btn' => array(
+        'icon' => 'icons/bt_link_btn.png',
+        'label' => t('Add Bootstrap Button'),
       ),
     ),
     'default' => 't',
